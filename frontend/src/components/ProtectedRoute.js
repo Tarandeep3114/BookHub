@@ -1,0 +1,17 @@
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
+// the protectedRoute component to protect the dashboard
+const ProtectedRoute = ({ children }) => {
+  const { authToken } = useAuth();
+
+  
+  if (!authToken) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
+};
+
+export default ProtectedRoute;
